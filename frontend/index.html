@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Share surplus food safely with people and organizations who need it.">
+  <title>ShareBite | Food Donation & Redistribution</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="ShareBite home"><span class="brand-mark">♥</span> ShareBite</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#discover">Discover food</a><a href="#how-it-works">How it works</a>
+      <button id="open-auth" class="button button-outline">Sign in</button>
+      <button id="logout-button" class="button button-outline hidden">Sign out</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">GOOD FOOD. LESS WASTE. MORE CARE.</p>
+        <h1>Share a meal.<br><span>Change a day.</span></h1>
+        <p class="hero-text">Connect restaurants, shops, event organizers and households with nearby charities and people who can use surplus food safely.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#donate">Donate surplus food ↗</a>
+          <a class="button button-light" href="#discover">Find available food</a>
+        </div>
+        <div class="hero-note"><span class="note-dot"></span> Every listing includes a pickup deadline and food-safety details.</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a bowl of fresh food">
+        <div class="art-sun"></div><div class="art-card art-card-one">🥕</div><div class="art-card art-card-two">🥑</div>
+        <div class="food-bowl"><span>🥗</span></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div>
+        <div class="floating-label"><span class="floating-icon">✓</span><span><b>Good food, rescued</b><small>One community at a time</small></span></div>
+      </div>
+    </section>
+
+    <section class="impact-strip" aria-label="Platform benefits">
+      <div><strong>01</strong><span>Post surplus food</span></div><div><strong>02</strong><span>Match with recipients</span></div><div><strong>03</strong><span>Arrange safe pickup</span></div><div><strong>04</strong><span>Reduce food waste</span></div>
+    </section>
+
+    <section class="section" id="discover">
+      <div class="section-heading">
+        <div><p class="eyebrow">COMMUNITY FOOD BOARD</p><h2>Food ready to be shared</h2><p class="muted">Browse available donations and request a pickup.</p></div>
+        <button class="button button-primary" id="refresh-listings">Refresh listings ↻</button>
+      </div>
+      <div class="filter-row">
+        <label class="search-field"><span>⌕</span><input id="search-input" type="search" placeholder="Search food or location…" aria-label="Search food or location"></label>
+        <select id="category-filter" aria-label="Filter by category"><option value="">All categories</option><option>Prepared meals</option><option>Bakery</option><option>Fruits & vegetables</option><option>Dairy</option><option>Packaged food</option><option>Other</option></select>
+        <select id="sort-filter" aria-label="Sort listings"><option value="deadline">Pickup deadline</option><option value="newest">Newest first</option></select>
+      </div>
+      <div id="listing-status" class="status-message" role="status">Loading available donations…</div>
+      <div id="donation-grid" class="donation-grid"></div>
+    </section>
+
+    <section class="donate-section" id="donate">
+      <div class="donate-intro"><p class="eyebrow">MAKE A DIFFERENCE</p><h2>Have extra food?<br><span>Pass it forward.</span></h2><p>Share clear details so a recipient can collect the food before the deadline. Only donate food that has been handled and stored safely.</p>
+        <ul class="check-list"><li>✓ Set quantity and pickup deadline</li><li>✓ Add allergen and storage information</li><li>✓ Track requests and donation status</li></ul>
+      </div>
+      <form id="donation-form" class="form-card">
+        <div class="form-title"><span class="form-icon">＋</span><div><h3>List a food donation</h3><p>Sign in with a donor account to submit.</p></div></div>
+        <div class="form-grid">
+          <label>Food name<input name="title" required maxlength="100" placeholder="e.g. Vegetable rice boxes"></label>
+          <label>Category<select name="category" required><option value="">Choose category</option><option>Prepared meals</option><option>Bakery</option><option>Fruits & vegetables</option><option>Dairy</option><option>Packaged food</option><option>Other</option></select></label>
+          <label>Quantity<input name="quantity" required maxlength="80" placeholder="e.g. 12 meal boxes"></label>
+          <label>Pickup location<input name="location" required maxlength="180" placeholder="Area, street or organization"></label>
+          <label>Pickup deadline<input name="pickup_deadline" type="datetime-local" required></label>
+          <label>Food prepared / packed at<input name="prepared_at" type="datetime-local"></label>
+          <label class="full-width">Ingredients and allergen information<textarea name="allergen_info" maxlength="1000" rows="2" placeholder="List known allergens; write 'unknown' if not confirmed"></textarea></label>
+          <label class="full-width">Storage and handling notes<textarea name="storage_notes" maxlength="1000" rows="2" placeholder="e.g. Keep refrigerated; sealed containers"></textarea></label>
+          <label class="full-width">Additional description<textarea name="description" maxlength="1500" rows="2" placeholder="Any other useful details"></textarea></label>
+        </div>
+        <label class="consent-row"><input type="checkbox" name="safety_confirmed" required><span>I confirm the food is suitable to donate and the details above are accurate.</span></label>
+        <button class="button button-primary button-wide" type="submit">Submit donation listing ↗</button>
+        <p id="donation-form-message" class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="section how-section" id="how-it-works">
+      <div class="section-heading"><div><p class="eyebrow">SIMPLE, LOCAL, THOUGHTFUL</p><h2>From surplus to shared</h2></div></div>
+      <div class="steps-grid"><article class="step-card"><span>01</span><div class="step-emoji">🍲</div><h3>Donor lists food</h3><p>Restaurants, shops and event teams publish the quantity, location and pickup deadline.</p></article><article class="step-card"><span>02</span><div class="step-emoji">🤝</div><h3>Recipient requests</h3><p>A registered recipient or charity requests the available donation before it expires.</p></article><article class="step-card"><span>03</span><div class="step-emoji">🚲</div><h3>Pickup is coordinated</h3><p>The donor confirms the request and both sides arrange a safe, timely handover.</p></article></div>
+      <div class="safety-banner"><div class="safety-symbol">✳</div><div><h3>Food safety comes first</h3><p>This platform helps coordinate donations; it does not inspect food. Donors and recipients must follow applicable local food-safety rules, disclose known allergens, maintain suitable temperatures and decline unsafe food.</p></div></div>
+    </section>
+
+    <section class="section account-section" id="account">
+      <div class="section-heading"><div><p class="eyebrow">YOUR COMMUNITY ACTIVITY</p><h2>My dashboard</h2><p class="muted">Sign in to manage your donations and requests.</p></div></div>
+      <div id="dashboard-content" class="dashboard-empty"><span>♧</span><p>Sign in to view your dashboard.</p><button class="button button-outline" id="dashboard-signin">Sign in / create account</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#"><span class="brand-mark">♥</span> ShareBite</a><p>Rescue good food. Strengthen communities.</p><small>Educational project demo · Always follow local food-safety guidance.</small></footer>
+
+  <dialog id="auth-dialog" class="modal">
+    <form method="dialog" class="modal-close-row"><button class="icon-button" aria-label="Close sign in dialog">×</button></form>
+    <div class="modal-content"><p class="eyebrow">WELCOME TO SHAREBITE</p><h2 id="auth-title">Join the community</h2><p class="muted">Use one account to donate food or request available donations.</p>
+      <div class="auth-tabs"><button class="auth-tab active" data-mode="login" type="button">Sign in</button><button class="auth-tab" data-mode="register" type="button">Create account</button></div>
+      <form id="auth-form">
+        <div id="register-fields" class="hidden">
+          <label>Full name<input name="name" maxlength="100" autocomplete="name"></label>
+          <label>Organization (optional)<input name="organization" maxlength="150" placeholder="Restaurant, charity, household…"></label>
+          <label>Account type<select name="role"><option value="recipient">Recipient / charity</option><option value="donor">Food donor</option></select></label>
+        </div>
+        <label>Email address<input name="email" type="email" required autocomplete="email" maxlength="254"></label>
+        <label>Password<input name="password" type="password" required minlength="8" autocomplete="current-password"></label>
+        <button id="auth-submit" class="button button-primary button-wide" type="submit">Sign in</button><p id="auth-message" class="form-message" role="status"></p>
+      </form>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
